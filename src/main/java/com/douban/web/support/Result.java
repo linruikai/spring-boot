@@ -39,7 +39,7 @@ public class Result {
     }
 
     public static Result fail(Integer code,String message){
-        return new Result(1,message);  //后续根据业务具体情况完善
+        return new Result(code,message);  //后续根据业务具体情况完善
     }
 
     public static Result fail(String message){

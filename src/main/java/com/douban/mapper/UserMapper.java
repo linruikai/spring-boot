@@ -1,7 +1,6 @@
 package com.douban.mapper;
 
 import com.douban.bean.User;
-import org.apache.ibatis.annotations.Mapper;
 
 /**
  * Created by ruikai.lin  on 2018/1/30 下午2:20.
@@ -10,4 +9,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 public interface UserMapper {
     User getById(Integer id);
+
+    void insert(User user);
 }

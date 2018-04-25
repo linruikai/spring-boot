@@ -2,7 +2,7 @@
 <configuration>
 
 	<property name="CONSOLE_LOG_PATTERN"
-			  value="%date{yyyy-MM-dd HH:mm:ss} | %highlight(%-5level) | %cyan(%logger) | %msg%n"/>
+			  value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level)  %cyan(%logger) - %msg%n"/>
 	<!-- 属性文件 -->
 	<property name="LOG_PATH" value="/data/logs/weblog/douban"/>
 

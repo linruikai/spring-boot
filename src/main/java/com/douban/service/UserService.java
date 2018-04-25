@@ -14,4 +14,6 @@ public interface UserService {
      * @return
      */
     User getById(Integer id);
+
+    void insert(User user);
 }

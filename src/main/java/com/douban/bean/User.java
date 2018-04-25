@@ -45,5 +45,4 @@ public class User extends BaseBean{
   public void setGender(Integer gender) {
     this.gender = gender;
   }
-
 }

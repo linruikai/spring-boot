@@ -35,12 +35,6 @@ public class GlobalExceptionAdvice {
         return Result.fail("无效请求");
     }
 
-    @ExceptionHandler(Throwable.class)
-    public Result globalHandler(WebRequest request, Throwable e) {
-        logger.error("系统异常 {} ", request, e);
-        return Result.fail(e.getMessage());
-    }
-
     @ExceptionHandler(ConstraintViolationException.class)
     public Result handleValidationException(ConstraintViolationException e) {
         for (ConstraintViolation<?> s : e.getConstraintViolations()) {
@@ -49,4 +43,9 @@ public class GlobalExceptionAdvice {
         return Result.fail("参数格式错误");
     }
 
+    @ExceptionHandler
+    public Result handle(Exception e) {
+        logger.error("服务器异常", e);
+        return Result.fail("服务器错误");
+    }
 }

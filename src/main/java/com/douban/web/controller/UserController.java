@@ -10,9 +10,11 @@ import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.Cacheable;
 
 /**
  * Created by ruikai.lin  on 2018/1/30 下午2:18.
@@ -31,11 +33,20 @@ public class UserController {
     @Autowired
     private AsyncTask asyncTask;
 
+    @Autowired
+    private RedisTemplate redisTemplate;
+
     @GetMapping(path = "user/{id}")
     public Result get(@ApiParam(name = "id", value = "用户ID") @PathVariable Integer id) {
         User user = userService.getById(id);
         logger.info("user:{}", user);
         return Result.success(user);
+    }
+
+    @GetMapping("test")
+    @Cacheable(value = "key11")
+    public String tests(){
+        return "121212";
     }
 
     @GetMapping(path = "mobile")

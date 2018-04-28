@@ -1,6 +1,7 @@
 package com.douban;
 
 import org.junit.Test;
+import redis.clients.jedis.Jedis;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,8 +15,8 @@ import java.util.stream.Collectors;
 public class MyTest {
     @Test
     public void testThread(){
-        int processors = Runtime.getRuntime().availableProcessors();
-        System.out.println(processors);
+        Jedis jedis = new Jedis();
+        jedis.set("user-key","你好");
     }
 
     @Test

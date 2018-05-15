@@ -6,6 +6,8 @@ import com.douban.bean.User;
 import com.douban.service.UserService;
 import com.douban.util.common.AsyncTask;
 import com.douban.web.support.Result;
+import com.github.pagehelper.PageInfo;
+import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +16,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import springfox.documentation.annotations.Cacheable;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by ruikai.lin  on 2018/1/30 下午2:18.
@@ -33,21 +36,26 @@ public class UserController {
     @Autowired
     private AsyncTask asyncTask;
 
+
     @Autowired
     private RedisTemplate redisTemplate;
 
     @GetMapping(path = "user/{id}")
-    public Result get(@ApiParam(name = "id", value = "用户ID") @PathVariable Integer id) {
+    public Result get(@ApiParam(name = "id", value = "用户ID") @PathVariable Integer id,
+                      @ApiParam(name = "name",value = "name") @RequestParam("name")String name) {
         User user = userService.getById(id);
         logger.info("user:{}", user);
         return Result.success(user);
     }
 
-    @GetMapping("test")
-    @Cacheable(value = "key11")
-    public String tests(){
-        return "121212";
+    @ApiOperation("测试pagehelper")
+    @GetMapping("all")
+    public Result all(@ApiParam(name = "pageNum",value = "当前页") @RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum,
+                      @ApiParam(name = "pageSize",value = "每页数") @RequestParam(value = "pageSize",defaultValue = "5") Integer pageSize){
+        PageInfo<User> users = userService.getAll(pageNum,pageSize);
+        return Result.success(users);
     }
+
 
     @GetMapping(path = "mobile")
     public Result mobile(@ApiParam(name = "mobile", value = "手机号") @Mobile @RequestParam String mobile) {

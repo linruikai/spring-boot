@@ -21,9 +21,9 @@ public class ThreadPool {
     public AsyncTaskExecutor taskExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setThreadNamePrefix("TASK_EXECUTOR");
-        int size = Runtime.getRuntime().availableProcessors() + 1;
-        executor.setCorePoolSize(size);
-        executor.setMaxPoolSize(size * 2);
+        int size = Runtime.getRuntime().availableProcessors();
+        executor.setCorePoolSize(size + 1);
+        executor.setMaxPoolSize(size << 1);
         executor.setKeepAliveSeconds(3000);
         executor.setQueueCapacity(200);
         // 使用预定义的异常处理类

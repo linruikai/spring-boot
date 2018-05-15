@@ -1,6 +1,9 @@
 package com.douban.mapper;
 
 import com.douban.bean.User;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  * Created by ruikai.lin  on 2018/1/30 下午2:20.
@@ -12,4 +15,8 @@ public interface UserMapper {
     User getById(Integer id);
 
     void insert(User user);
+
+
+    @Select("select * from user")
+    List<User> getAll();
 }

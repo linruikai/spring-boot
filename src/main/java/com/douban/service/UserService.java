@@ -1,6 +1,7 @@
 package com.douban.service;
 
 import com.douban.bean.User;
+import com.github.pagehelper.PageInfo;
 
 /**
  * Created by ruikai.lin  on 2018/1/30 下午2:19.
@@ -16,4 +17,6 @@ public interface UserService {
     User getById(Integer id);
 
     void insert(User user);
+
+    PageInfo<User> getAll(Integer pageNum, Integer pageSize);
 }

@@ -1,5 +1,6 @@
 package com.douban;
 
+import com.douban.bean.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,11 @@ public class DoubanApplicationTests {
 
     @Test
     public void resr() {
-        redisTemplate.opsForValue().set("lin", "林瑞凯");
+        User user = new User();
+        user.setId(1);
+        user.setName("12321");
+
+        redisTemplate.opsForValue().set("lin", user);
         Object lin = redisTemplate.opsForValue().get("lin");
         System.out.println(lin);
     }

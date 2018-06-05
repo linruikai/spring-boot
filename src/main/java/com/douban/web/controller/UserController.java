@@ -41,8 +41,7 @@ public class UserController {
     private RedisTemplate redisTemplate;
 
     @GetMapping(path = "user/{id}")
-    public Result get(@ApiParam(name = "id", value = "用户ID") @PathVariable Integer id,
-                      @ApiParam(name = "name",value = "name") @RequestParam("name")String name) {
+    public Result get(@ApiParam(name = "id", value = "用户ID") @PathVariable Integer id) {
         User user = userService.getById(id);
         logger.info("user:{}", user);
         return Result.success(user);

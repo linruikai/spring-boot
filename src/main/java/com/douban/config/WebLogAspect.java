@@ -32,9 +32,9 @@ public class WebLogAspect {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
 
-        logger.info("URL:{}", request.getRequestURL());
-        logger.info("HTTP_METHOD:{}", request.getMethod());
-        logger.info("IP:{}", request.getRemoteAddr());
+//        logger.info("URL:{}", request.getRequestURL());
+//        logger.info("HTTP_METHOD:{}", request.getMethod());
+//        logger.info("IP:{}", request.getRemoteAddr());
         logger.info("ARGS:{}", Arrays.toString(joinPoint.getArgs()));
     }
 

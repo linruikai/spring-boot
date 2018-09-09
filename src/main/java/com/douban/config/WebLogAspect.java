@@ -35,7 +35,7 @@ public class WebLogAspect {
 //        logger.info("URL:{}", request.getRequestURL());
 //        logger.info("HTTP_METHOD:{}", request.getMethod());
 //        logger.info("IP:{}", request.getRemoteAddr());
-        logger.info("参数:{}", Arrays.toString(joinPoint.getArgs()));
+        logger.info("参数:{}", Arrays.toString(joinPoint.getArgs()) );
     }
 
 //    @AfterReturning(returning = "ret", pointcut = "webLog()")

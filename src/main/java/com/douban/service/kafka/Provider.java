@@ -1,8 +1,12 @@
 package com.douban.service.kafka;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
+
+import java.util.Collections;
+import java.util.Map;
 
 /**
  * Created by ruikai.lin  on 2018/4/23 下午4:22.

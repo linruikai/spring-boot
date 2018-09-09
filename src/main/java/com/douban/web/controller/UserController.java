@@ -1,6 +1,8 @@
 package com.douban.web.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.douban.annotation.Email;
+import com.douban.annotation.Login;
 import com.douban.annotation.Mobile;
 import com.douban.bean.User;
 import com.douban.service.UserService;
@@ -16,6 +18,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -57,9 +60,12 @@ public class UserController {
 
 
     @GetMapping(path = "mobile")
+    @Login
     public Result mobile(@ApiParam(name = "mobile", value = "手机号") @Mobile @RequestParam String mobile) {
         logger.info("手机号：{}", mobile);
-        return Result.success(mobile);
+        JSONObject json = new JSONObject();
+        json.put("mobile",mobile);
+        return Result.success();
     }
 
     @GetMapping(path = "email")

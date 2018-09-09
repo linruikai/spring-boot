@@ -1,5 +1,6 @@
 package com.douban;
 
+import com.alibaba.fastjson.JSONObject;
 import org.junit.Test;
 import redis.clients.jedis.Jedis;
 
@@ -28,5 +29,13 @@ public class MyTest {
                 names.stream()
                         .filter(name -> name.length() == 4)
                         .collect(Collectors.joining(",")));
+    }
+
+    @Test
+    public void testJson(){
+        JSONObject json = new JSONObject();
+        json.put("1","23232");
+
+        System.out.println(json.get("2"));
     }
 }

@@ -23,7 +23,7 @@ import java.util.Arrays;
 public class WebLogAspect {
     private static final Logger logger = LoggerFactory.getLogger(WebLogAspect.class);
 
-    @Pointcut("execution(public com.douban.web.support.Result com.douban.web.controller.*.*(..))")
+    @Pointcut("execution(public com.douban.web.support.Result com.douban.web.controller.*.*(..)) && @annotation(com.douban.annotation.Login)")
     public void webLog() {
     }
 
@@ -35,12 +35,21 @@ public class WebLogAspect {
 //        logger.info("URL:{}", request.getRequestURL());
 //        logger.info("HTTP_METHOD:{}", request.getMethod());
 //        logger.info("IP:{}", request.getRemoteAddr());
-        logger.info("ARGS:{}", Arrays.toString(joinPoint.getArgs()));
+        logger.info("参数:{}", Arrays.toString(joinPoint.getArgs()));
     }
 
 //    @AfterReturning(returning = "ret", pointcut = "webLog()")
 //    public void doAfterReturning(Object ret) {
 //        // 处理完请求，返回内容
 //        logger.info("RESPONSE : " + ret);
+//        Result result = (Result) ret;
+//        if ( result.getData() != null){
+//            JSONObject data = (JSONObject) result.getData();
+//            data.put("code","!11");
+//        }else {
+//            JSONObject json = new JSONObject();
+//            json.put("code","222");
+//            result.setData(json);
+//        }
 //    }
 }
